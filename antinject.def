@@ -1,0 +1,3 @@
+EXPORTS
+    enable_antinject
+    disable_antinject
