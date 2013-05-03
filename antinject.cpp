@@ -185,7 +185,8 @@ NTSTATUS NTAPI SecurityLdrLoadDll(
 		check_one_file(dllname, virus_name, sizeof(virus_name));
 
 		// 通知上层逻辑， 让逻辑层来决定是否加载该DLL
- 		if (!g_notify(dllname, virus_name)) {
+		bool is_malware = (strlen(virus_name) > 0 );
+ 		if (!g_notify(dllname, is_malware)) {
  			// 拒绝运行
  			break;
  		} else {

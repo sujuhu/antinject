@@ -7,7 +7,7 @@ extern "C" {
 
 typedef bool (*antinject_notify)(
 	const char*inject_dllpath, 
-	const char* virus_name);
+	const bool is_malware);
 
 /*
  	启动防注入安全机制

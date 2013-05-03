@@ -3,10 +3,10 @@
 #include <windows.h>
 #include "antinject.h"
 
-bool notify(const char*inject_dllpath, const char* virus_name)
+bool notify(const char*inject_dllpath, bool is_malware)
 {
 	printf("Found Dll-Inject Attack: %s\n", inject_dllpath);
-	printf("Virus Name: %s\n", virus_name);
+	printf("Virus: %s\n", is_malware?"YES":"NO");
 	printf("The dll is forbidden!\n");
 
 	// 如果返回true， 表示模块被允许加载
