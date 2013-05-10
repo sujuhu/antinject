@@ -8,8 +8,25 @@
 #include <procutil.h>
 #include <shlwapi.h>
 #pragma comment(lib, "shlwapi.lib")
+void usage()
+{
+	printf("usage: test_inject.exe <dll>\n");
+	printf("example: test_inject.exe test_dll.dll\n");
+}
+
 int main(int argc, char* argv[])
 {
+	if (argc != 2) {
+		usage();
+		return -1;
+	}
+
+	const char* test_dll = argv[1];
+	if (!PathFileExists(test_dll)) {
+		printf("error: %s not exist\n", test_dll);
+		return -1;
+	}
+
 	// enum all process
 	int process_list = process_list_new();
 	int count = process_list_count(process_list);
@@ -38,7 +55,7 @@ int main(int argc, char* argv[])
 
 	char injectdll_path[MAX_PATH] = {0};
 	_getcwd(injectdll_path, MAX_PATH);
-	PathAppend(injectdll_path, "test_dll.dll");
+	PathAppend(injectdll_path, test_dll);
 	if (!inject_dll_to_process(pid_target, injectdll_path)) {
 		printf("inject process %d fail\n", pid_target);
 	} else {

@@ -74,7 +74,7 @@ void check_one_file(char *strFilePath,
 				nCheckResult = file_av_engine_check_virus(&saei, nHandle, &saeo);
 				if(AV_ENGINE_FIND_VIRUS == nCheckResult)
 				{
-					// strncpy(virus_name, saeo.virusInfo.strVirusName, name_max_len-1);
+					strncpy(virus_name, saeo.virusInfo.strVirusName, name_max_len-1);
 				}
 				av_engine_close_handle(nHandle);
 			}
@@ -102,8 +102,12 @@ void check_one_file(char *strFilePath,
 					nCheckResult = file_av_engine_check_virus(&saei, nHandle, &saeo);
 					if(AV_ENGINE_FIND_NOTHING != nCheckResult && AV_ENGINE_END_THIS_STREAM_CHECK != nCheckResult)
 					{
-						// printf("Found Virus(%d/%d %s %s)!\n", g_dwVirusCount, g_dwFileCount, saeo.virusInfo.strVirusName, saeo.virusInfo.strVirusType);
-						// strncpy(virus_name, saeo.virusInfo.strVirusName, name_max_len-1);
+						// printf("Found Virus(%d/%d %s %s)!\n", 
+						// 		g_dwVirusCount, 
+						// 		g_dwFileCount, 
+						// 		saeo.virusInfo.strVirusName, 
+						// 		saeo.virusInfo.strVirusType);
+						strncpy(virus_name, saeo.virusInfo.strVirusName, name_max_len-1);
 						break;
 					}
 
@@ -141,8 +145,12 @@ void check_one_file(char *strFilePath,
 							AV_ENGINE_END_THIS_STREAM_CHECK != nCheckResult)
 						{
 							// g_dwVirusCount++;
-							// printf("Found Virus(%d/%d %s %s)!\n", g_dwVirusCount, g_dwFileCount, saeo.virusInfo.strVirusName, saeo.virusInfo.strVirusType);
-							// strncpy(virus_name, saeo.virusInfo.strVirusName, name_max_len-1);
+							// printf("Found Virus(%d/%d %s %s)!\n", 
+							// 		g_dwVirusCount, 
+							//  	g_dwFileCount, 
+							// 		saeo.virusInfo.strVirusName, 
+							// 		saeo.virusInfo.strVirusType);
+							strncpy(virus_name, saeo.virusInfo.strVirusName, name_max_len-1);
 
 							break;
 						}
